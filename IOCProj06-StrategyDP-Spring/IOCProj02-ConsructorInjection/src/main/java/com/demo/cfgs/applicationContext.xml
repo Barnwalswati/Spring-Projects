@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="dt" class="java.util.Date" /> 
+	<bean id="dt1" class="java.util.Date">
+		<property name="year" value="110"></property><!-- add 1900 to given year so it becomes 2010 -->
+		<property name="month" value="4"></property><!-- 0 to 11 -->
+		<property name="date" value="20"></property><!--1 to 31 -->
+	</bean>
+	<bean id="wmg" class="com.demo.beans.WishMessageGenerator"> <!-- wmg is target object and dt is dependent object -->
+		<constructor-arg name="date" ref="dt"></constructor-arg>
+		<property name="date" ref="dt1"></property>
+	</bean>
+
+</beans>
