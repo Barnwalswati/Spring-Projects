@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="dt" class="java.util.Date" /> 
+	
+	<bean id="wmg" class="com.demo.beans.WishMessageGenerator" scope="singleton"> <!-- wmg is target object and dt is dependent object -->
+		<property name="date" ref="dt"> <!-- Setter Injection -->
+		</property>
+	</bean>
+	<bean id="wmg1" class="com.demo.beans.WishMessageGenerator" scope="singleton"> <!-- wmg is target object and dt is dependent object -->
+		<property name="date" ref="dt"> <!-- Setter Injection -->
+		</property>
+	</bean>
+	
+	<!-- here we use singleton java class as spring bean class to check the scope but it broke the behavior of singleton java class -->
+	<!-- <bean id="p" class="com.demo.singleton.Printer" scope="singleton"></bean>
+		 <bean id="p1" class="com.demo.singleton.Printer" scope="singleton"></bean>
+	-->
+	
+	<!-- for the solution of above we need to use factory method for creating the object  
+	here it will not create object directly it will create object through factory method
+	now it will work as singleton java class by creating only one object  for different bean id's   -->
+	<bean id="p" class="com.demo.singleton.Printer" scope="singleton" factory-method="getInstance"></bean>
+	<bean id="p1" class="com.demo.singleton.Printer" scope="singleton" factory-method="getInstance"></bean>
+	
+</beans>

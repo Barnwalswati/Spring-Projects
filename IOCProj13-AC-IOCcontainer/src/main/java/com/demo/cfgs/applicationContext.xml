@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+<!-- cgf dependent classes -->
+<bean id="dtdc" class="com.demo.comp.DTDC"></bean>
+<bean id="blueDart" class="com.demo.comp.BlueDart"></bean>
+<bean id="dhl" class="com.demo.comp.DHL"></bean>
+
+<!-- cfg Target class -->
+<bean id="fpkt" class="com.demo.comp.Flipkart">
+	<property name="courier" ref="dhl" />
+</bean>
+</beans>       
